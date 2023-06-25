@@ -8,7 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec ./node_modules/.bin/babel-node src/index.js",
     "watch": "node-sass --watch src/resource/scss/ --output src/public/css/",
-    "beautiful": "lint-staged",
+    "format": "lint-staged",
     "prepare": "husky install"
   },
   "repository": {
@@ -44,10 +44,6 @@
   },
   "lint-staged": {
     "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --allow-empty --tab-width 4 --write"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   }
+  
 }
