@@ -4,12 +4,18 @@ import { engine } from 'express-handlebars';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import route from './routes/index.js';
+import db from './config/db/index.js';
+// import { connect } from 'http2';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = 3000;
+
+//connect to db
+
+db.connect();
 
 // config static file
 app.use(express.static(path.join(__dirname, 'public')));
