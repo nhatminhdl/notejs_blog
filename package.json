@@ -7,7 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon --exec ./node_modules/.bin/babel-node src/index.js",
-    "watch": "node-sass --watch src/resource/scss/ --output src/public/css/"
+    "watch": "node-sass --watch src/resource/scss/ --output src/public/css/",
+    "beautiful": "lint-staged"
   },
   "repository": {
     "type": "git",
@@ -34,7 +35,18 @@
     "@babel/cli": "^7.22.5",
     "@babel/core": "^7.22.5",
     "@babel/preset-env": "^7.22.5",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
     "node-sass": "^9.0.0",
-    "nodemon": "^2.0.22"
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.8"
+  },
+  "lint-staged": {
+    "src/**/*.{js,json,scss}": "prettier --single-quote --trailing-comma all --tab-width 4 --write"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   }
 }
