@@ -1,4 +1,3 @@
-import course from '../model/course.js';
 import { mongooseToObject } from '../../until/mongoose.js';
 import courses from '../model/course.js';
 
@@ -31,6 +30,26 @@ class CoursesController {
             .save()
             .then(() => res.redirect('/'))
             .catch((error) => {});
+    }
+
+    //[GET] /coures/:id/edit
+    edit(req, res, next) {
+        courses
+            .findById(req.params.id)
+            .then((course) =>
+                res.render('courses/edit', {
+                    course: mongooseToObject(course),
+                }),
+            )
+            .catch(next);
+    }
+
+    //[PUT] /coures/:id
+    update(req, res, next) {
+        courses
+            .updateOne({ _id: req.params.id }, req.body)
+            .then((course) => res.redirect('/me/stored/courses'))
+            .catch(next);
     }
 }
 
